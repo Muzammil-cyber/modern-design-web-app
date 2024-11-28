@@ -1,7 +1,9 @@
+import Hero from "@/sections/Hero";
+
 export default function Home() {
   return (
     <>
-      <h1 className="text-7xl">Hello</h1>
+      <Hero />
     </>
   );
 }
