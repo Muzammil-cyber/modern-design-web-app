@@ -9,10 +9,10 @@ export default function Hero() {
     <section className="py-24 overflow-x-clip">
       <div className="container relative">
         <div className="absolute -left-60 top-16 hidden lg:block">
-          <Image src={designExample1Image} alt="" />
+          <Image src={designExample1Image} alt="" placeholder="blur" />
         </div>
         <div className="absolute -right-[380px] -top-16  hidden lg:block">
-          <Image src={designExample2Image} alt="" />
+          <Image src={designExample2Image} alt="" placeholder="blur" />
         </div>
         <div className="absolute left-56 top-96  hidden lg:block">
           <Pointer name="Andrea" />
