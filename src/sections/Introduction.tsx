@@ -13,9 +13,7 @@ export default function Introduction() {
     target: scrollTarget,
     offset: ["start end", "end end"],
   });
-  // useMotionValueEvent(scrollYProgress, "change", (latest) => {
-  //   console.log("🚀 ~ useMotionValueEvent ~ latest:", latest);
-  // });
+
   const [currentWord, setCurrentWord] = useState(0);
   const wordIndex = useTransform(scrollYProgress, [0, 1], [0, words.length]);
 
