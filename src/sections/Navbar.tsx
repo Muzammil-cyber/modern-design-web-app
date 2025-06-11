@@ -3,15 +3,12 @@ import Image from "next/image";
 import logoImage from "@/assets/images/logo.svg";
 import Button from "@/components/Button";
 import { useState } from "react";
-import { twMerge } from "tailwind-merge";
-import { AnimatePresence, motion } from "framer-motion";
 
-const navLinks = [
-  { label: "Home", href: "#" },
-  { label: "Features", href: "#features" },
-  { label: "Integrations", href: "#integrations" },
-  { label: "FAQs", href: "#faqs" },
-];
+import HamBurgerIcon from "@/assets/icons/hamburger";
+import { NAV_LINKS } from "@/utils/constants";
+import NavBarMobile from "./NavBarMobile";
+
+
 
 export default function Navbar() {
   const [isOpened, setIsOpened] = useState(false);
@@ -28,9 +25,10 @@ export default function Navbar() {
                   className="h-9 w-auto md:h-auto"
                 />
               </div>
+              {/* For screen larger than mobile */}
               <div className="lg:flex justify-center items-center hidden">
                 <nav className="flex gap-6 font-medium">
-                  {navLinks.map((link) => (
+                  {NAV_LINKS.map((link) => (
                     <a href={link.href} key={link.label}>
                       {link.label}
                     </a>
@@ -38,50 +36,7 @@ export default function Navbar() {
                 </nav>
               </div>
               <div className="flex justify-end gap-4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="feather feather-menu md:hidden"
-                  onClick={() => setIsOpened(!isOpened)}
-                >
-                  <line
-                    x1="3"
-                    y1="6"
-                    x2="21"
-                    y2="6"
-                    className={twMerge(
-                      "origin-left transition",
-                      isOpened && "rotate-45 -translate-y-1"
-                    )}
-                  ></line>
-                  <line
-                    x1="3"
-                    y1="12"
-                    x2="21"
-                    y2="12"
-                    className={twMerge(
-                      "transition",
-                      isOpened ? "opacity-0" : ""
-                    )}
-                  ></line>
-                  <line
-                    x1="3"
-                    y1="18"
-                    x2="21"
-                    y2="18"
-                    className={twMerge(
-                      "origin-left transition",
-                      isOpened && "-rotate-45 translate-y-1"
-                    )}
-                  ></line>
-                </svg>
+                <HamBurgerIcon isOpened={isOpened} setIsOpened={setIsOpened} />
                 <Button
                   variant="secondary"
                   className="hidden md:inline-flex items-center"
@@ -96,34 +51,7 @@ export default function Navbar() {
                 </Button>
               </div>
             </div>
-            <AnimatePresence>
-              {isOpened && (
-                <motion.div
-                  initial={{ height: 0 }}
-                  animate={{ height: "auto" }}
-                  exit={{ height: 0 }}
-                  className="overflow-hidden"
-                >
-                  <div className="flex flex-col items-center gap-4 px-4 py-4 ">
-                    {navLinks.map((link) => (
-                      <a
-                        href={link.href}
-                        key={link.label}
-                        className={twMerge("  text-white")}
-                      >
-                        {link.label}
-                      </a>
-                    ))}
-                    <Button variant="secondary" className="w-full">
-                      Log In
-                    </Button>
-                    <Button variant="primary" className="w-full">
-                      Sign Up
-                    </Button>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <NavBarMobile isOpened={isOpened} />
           </div>
         </div>
       </header>

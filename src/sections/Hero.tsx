@@ -4,49 +4,14 @@ import designExample1Image from "@/assets/images/design-example-1.png";
 import designExample2Image from "@/assets/images/design-example-2.png";
 import Image from "next/image";
 import Pointer from "@/components/Pointer";
-import { useAnimate, motion } from "framer-motion";
-import { useEffect } from "react";
+import { motion } from "framer-motion";
 import customCursor from "@/assets/images/cursor-you.svg";
+import { useHeroAnimation } from "@/hooks/useHeroAnimation";
 
 export default function Hero() {
-  const [leftDesignScope, leftDesignAnimate] = useAnimate();
-  const [rightDesignScope, rightDesignAnimate] = useAnimate();
-  const [andreaPointerScope, andreaPointerAnimate] = useAnimate();
-  const [bryanPointerScope, bryanPointerAnimate] = useAnimate();
+  const { leftDesignScope, rightDesignScope, andreaPointerScope, bryanPointerScope } = useHeroAnimation();
 
-  useEffect(() => {
-    leftDesignAnimate([
-      [leftDesignScope.current, { opacity: 1 }, { duration: 0.5 }],
-      [leftDesignScope.current, { x: 0, y: 0 }, { duration: 0.5 }],
-    ]);
-    rightDesignAnimate([
-      [rightDesignScope.current, { opacity: 1 }, { duration: 0.5, delay: 1.5 }],
-      [rightDesignScope.current, { x: 0, y: 0 }, { duration: 0.5 }],
-    ]);
-    andreaPointerAnimate([
-      [andreaPointerScope.current, { opacity: 1 }, { duration: 0.5 }],
-      [andreaPointerScope.current, { x: -100, y: 0 }, { duration: 0.5 }],
-      [
-        andreaPointerScope.current,
-        { x: 0, y: [0, 16, 0] },
-        { duration: 0.5, ease: "easeInOut" },
-      ],
-    ]);
 
-    bryanPointerAnimate([
-      [
-        bryanPointerScope.current,
-        { opacity: 1 },
-        { duration: 0.5, delay: 1.5 },
-      ],
-      [bryanPointerScope.current, { x: 0, y: 100 }, { duration: 0.5 }],
-      [
-        bryanPointerScope.current,
-        { x: [0, 16, 0], y: 0 },
-        { duration: 0.5, ease: "easeInOut" },
-      ],
-    ]);
-  }, []);
 
   return (
     <section
